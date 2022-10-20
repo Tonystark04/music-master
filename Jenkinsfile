@@ -2,10 +2,6 @@ node {
 	stage('Checkout') {
 		checkout scm
 	}
-	stage('Build') {
-		// Run the maven build
-		sh 'mvn clean install'
-	}
 	stage('Test') {
 		// Run the mvn test
 		sh 'mvn test'
