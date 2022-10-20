@@ -2,10 +2,12 @@ node {
 	stage('Checkout') {
 		checkout scm
 	}
-	stage('Build') {
-		// Run the maven build
-		sh 'mvn clean install'
-	}
+	stage('Compile-Package'){
+
+      def mvnHome =  tool name: 'maven3', type: 'maven'   
+      sh "${mvnHome}/bin/mvn clean package"
+	  sh 'mv target/myweb*.war target/newapp.war'
+   }
 	stage('Test') {
 		// Run the mvn test
 		sh 'mvn test'
